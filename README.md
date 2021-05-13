@@ -1,5 +1,4 @@
-#"Google Keepy"
-##Send this to Tyna by Monday 05.10.21
+# "Google Keepy"
 
 MVPs:
 
@@ -20,3 +19,10 @@ BONUS FEATURES:
 - Different color custom backgrounds for tasks
 - Light and Dark Mode
 - Pin Lists to the "top" of the list
+
+## Steps for setting up database:
+
+1. Create a user using the same credentials in the .env file with the ability to create databases. `psql -c "CREATE USER <username> PASSWORD '<password>' CREATEDB"`
+2. `npx dotenv sequelize db:create`
+3. `npx dotenv sequelize db:migrate`
+4. `npx dotenv sequelize db:seed:all`

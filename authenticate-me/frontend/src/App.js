@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Keeps from "./components/Keeps";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Keeps />
+      <Keeps />
+      <Keeps />
+      <Keeps />
     </>
   );
 }

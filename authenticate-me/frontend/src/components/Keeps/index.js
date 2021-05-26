@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Card from '../Ui/Card';
 import './Keeps.css';
 
-// TODO: pass in props to use in title, etc
+// []TODO: pass in props to use in title, etc
+// []TODO: create a form to make a new keep item
 const Keeps = () => {
   const initialValue = [
     'Test thing',
@@ -16,19 +17,21 @@ const Keeps = () => {
   return (
     <Card>
       <section>
-        <h1 className="title">Title of Keep</h1>
-        {tasks.map((task) => {
-          return (
-            <div>
-              <input type="checkbox"></input>
-              {task}
-            </div>
-          );
-        })}
+        <ul>
+          <h1 className="title">Title of Keep</h1>
+          {tasks.map((task) => {
+            return (
+              <div>
+                <input type="checkbox"></input>
+                <li>{task}</li>
+              </div>
+            );
+          })}
 
-        {/* <div className="checkbox">
+          {/* <div className="checkbox">
           <input type="checkbox"></input>
         </div> */}
+        </ul>
       </section>
     </Card>
   );

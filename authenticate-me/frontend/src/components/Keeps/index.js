@@ -2,24 +2,39 @@ import React, { useState } from 'react';
 import Card from '../Ui/Card';
 import './Keeps.css';
 
-// TODO: pass in props to use in title, etc
 const Keeps = (props) => {
   const currTaskList = props.taskList || [];
   const [tasks, setTasks] = useState(currTaskList);
 
+  const completedTasks = [];
+  const notCompletedTasks = [];
+
+  tasks.forEach((task) => {
+    if (!task.isComplete) {
+      notCompletedTasks.push(
+        <div>
+          <input type="checkbox"></input>
+          {task.description}
+        </div>
+      );
+    } else {
+      completedTasks.push(
+        <div>
+          <input type="checkbox" checked></input>
+          {task.description}
+        </div>
+      );
+    }
+  });
+
   return (
     <Card>
-      <section>
-        <h1 className="title">{props.title || 'ThisIsTemp'}</h1>
-        {tasks.map((task) => {
-          return (
-            <div>
-              <input type="checkbox" checked={task.isComplete}></input>
-              {task.description}
-            </div>
-          );
-        })}
-      </section>
+      {/* <section> */}
+      {/* section might not be needed */}
+      <h1 className="title">{props.title || 'ThisIsTemp'}</h1>
+      {notCompletedTasks}
+      {completedTasks}
+      {/* </section> */}
     </Card>
   );
 };

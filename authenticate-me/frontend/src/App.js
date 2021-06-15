@@ -16,11 +16,11 @@ function App() {
   }, [dispatch]);
 
   const taskList = [
-    { description: 'Test thing', isComplete: true },
-    { description: 'Other thing', isComplete: false },
-    { description: 'Third things to do', isComplete: true },
-    { description: 'These are dynamic now', isComplete: false },
-    { description: 'boom boom', isComplete: true },
+    { description: 'Test thing', isComplete: true, position: 0 },
+    { description: 'Other thing', isComplete: false, position: 3760746300 },
+    { description: 'Third things to do', isComplete: true, position: 1 },
+    { description: 'These are dynamic now', isComplete: false, position: 9 },
+    { description: 'boom boom position is 2', isComplete: true, position: 2 },
   ];
 
   return (

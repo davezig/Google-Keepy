@@ -10,19 +10,15 @@ const Keeps = (props) => {
   return (
     <Card>
       <section>
-        <h1 className="title">Title of Keep</h1>
+        <h1 className="title">{props.title || 'ThisIsTemp'}</h1>
         {tasks.map((task) => {
           return (
             <div>
-              <input type="checkbox"></input>
-              {task}
+              <input type="checkbox" checked={task.isComplete}></input>
+              {task.description}
             </div>
           );
         })}
-
-        {/* <div className="checkbox">
-          <input type="checkbox"></input>
-        </div> */}
       </section>
     </Card>
   );

@@ -16,10 +16,11 @@ function App() {
   }, [dispatch]);
 
   const taskList = [
-    'Test thing',
-    'Other thing',
-    'Third thing to do',
-    'These are constants in Keeps/index.js',
+    { description: 'Test thing', isComplete: true },
+    { description: 'Other thing', isComplete: false },
+    { description: 'Third things to do', isComplete: true },
+    { description: 'These are dynamic now', isComplete: false },
+    { description: 'boom boom', isComplete: true },
   ];
 
   return (

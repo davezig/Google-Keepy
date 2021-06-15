@@ -3,15 +3,9 @@ import Card from '../Ui/Card';
 import './Keeps.css';
 
 // TODO: pass in props to use in title, etc
-const Keeps = () => {
-  const initialValue = [
-    'Test thing',
-    'Other thing',
-    'Third thing to do',
-    'These are constants in Keeps/index.js',
-  ];
-
-  const [tasks, setTasks] = useState(initialValue);
+const Keeps = (props) => {
+  const currTaskList = props.taskList || [];
+  const [tasks, setTasks] = useState(currTaskList);
 
   return (
     <Card>

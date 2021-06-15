@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
-import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
-import Keeps from "./components/Keeps";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import LoginFormPage from './components/LoginFormPage';
+import SignupFormPage from './components/SignupFormPage';
+import * as sessionActions from './store/session';
+import Navigation from './components/Navigation';
+import Keeps from './components/Keeps';
+import Splash from './components/Splash';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,13 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  const taskList = [
+    'Test thing',
+    'Other thing',
+    'Third thing to do',
+    'These are constants in Keeps/index.js',
+  ];
 
   return (
     <>
@@ -27,9 +35,9 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Keeps />
-      <Keeps />
-      <Keeps />
+      <Keeps taskList={taskList} />
+      <Keeps taskList={taskList} />
+      <Keeps taskList={taskList} />
       <Keeps />
     </>
   );

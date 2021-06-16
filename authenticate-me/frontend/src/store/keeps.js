@@ -1,17 +1,19 @@
 const UPDATE_TASK = 'keeps/updateTask';
 
-const updateTask = (id, task) => {
+const updateTask = (keep, taskId, task) => {
   return {
     type: UPDATE_TASK,
-    id,
+    keep,
+    taskId,
     task,
   };
 };
 
-export const updateTaskThunk = (id, task) => async (dispatch) => {
+export const updateTaskThunk = (keep, taskId, task) => async (dispatch) => {
   //   if response is 200
+  console.log(keep, taskId, task);
   if (true) {
-    dispatch(updateTask(id, task));
+    dispatch(updateTask(keep, taskId, task));
   }
   //   return response;
 };
@@ -82,7 +84,19 @@ const initialState = {
 const keepsReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_TASK:
-      return { ...state, any: 'nothing' };
+      return {
+        ...state,
+        [action.keep]: {
+          ...state[action.keep],
+          tasks: {
+            ...state[action.keep].tasks,
+            [action.taskId]: {
+              ...state[action.keep].tasks[action.taskId],
+              ...action.task,
+            },
+          },
+        },
+      };
     default:
       return state;
   }

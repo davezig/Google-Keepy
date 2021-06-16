@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTaskThunk } from '../../store/keeps';
 import Card from '../Ui/Card';
 import './Keep.css';
 
 const Keep = (props) => {
+  const dispatch = useDispatch();
   const { [props.id]: keep } = useSelector((state) => state.keeps);
   // this is destructured and the key is the value of props.id and then the :keep is assigning the destructured value to the alias of keep
 
@@ -13,22 +15,29 @@ const Keep = (props) => {
   const completedTasks = [];
   const notCompletedTasks = [];
 
+  function updateCompleted(event, taskId) {
+    dispatch(
+      updateTaskThunk(props.id, taskId, { isComplete: event.target.checked })
+    );
+  }
+
   for (const taskId in keep.tasks) {
     const task = keep.tasks[taskId];
+    const template = (
+      <div className={task.isComplete ? 'completed' : ''}>
+        <input
+          type="checkbox"
+          checked={task.isComplete}
+          onChange={(event) => updateCompleted(event, taskId)}
+        ></input>
+        {task.description}
+      </div>
+    );
+
     if (!task.isComplete) {
-      notCompletedTasks.push(
-        <div>
-          <input type="checkbox"></input>
-          {task.description}
-        </div>
-      );
+      notCompletedTasks.push(template);
     } else {
-      completedTasks.push(
-        <div>
-          <input type="checkbox" checked></input>
-          {task.description}
-        </div>
-      );
+      completedTasks.push(template);
     }
   }
 

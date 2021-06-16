@@ -1,4 +1,14 @@
+const CREATE_TASK = 'keeps/createTask';
 const UPDATE_TASK = 'keeps/updateTask';
+
+const createTask = (keep, taskId, task) => {
+  return {
+    type: CREATE_TASK,
+    keep,
+    taskId,
+    task,
+  };
+};
 
 const updateTask = (keep, taskId, task) => {
   return {
@@ -9,9 +19,18 @@ const updateTask = (keep, taskId, task) => {
   };
 };
 
+export const createTaskThunk = (keep, task) => async (dispatch) => {
+  //   if response is 200
+  console.log(keep, task);
+  if (true) {
+    const randomTaskId = Math.random();
+    dispatch(createTask(keep, randomTaskId, task));
+  }
+  //   return response;
+};
+
 export const updateTaskThunk = (keep, taskId, task) => async (dispatch) => {
   //   if response is 200
-  console.log(keep, taskId, task);
   if (true) {
     dispatch(updateTask(keep, taskId, task));
   }
@@ -83,6 +102,18 @@ const initialState = {
 
 const keepsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_TASK:
+      return {
+        ...state,
+        [action.keep]: {
+          ...state[action.keep],
+          tasks: {
+            ...state[action.keep].tasks,
+            [action.taskId]: action.task,
+          },
+        },
+      };
+
     case UPDATE_TASK:
       return {
         ...state,

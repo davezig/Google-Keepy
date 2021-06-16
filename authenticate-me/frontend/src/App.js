@@ -29,10 +29,12 @@ function App() {
           </Route>
         </Switch>
       )}
-      {Object.keys(keeps).map((keepId) => (
-        <Keep key={`keep-${keepId}`} id={keepId} />
-        // <Keep key={`keep-${keepId}`} id="string" />
-      ))}
+      <div className="keepsList">
+        {Object.keys(keeps).map((keepId) => (
+          <Keep key={`keep-`} id={keepId} />
+          // <Keep key={`keep-`} id="string" />
+        ))}
+      </div>
     </>
   );
 }

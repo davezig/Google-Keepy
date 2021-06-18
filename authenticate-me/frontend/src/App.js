@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import Keep from './components/Keep';
+import KeepsPage from './components/KeepsPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const dispatch = useDispatch();
-  const keeps = useSelector((state) => state.keeps);
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -27,14 +27,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <ProtectedRoute path="/keeps">
+            <KeepsPage />
+          </ProtectedRoute>
+          <Redirect to="/keeps" />
         </Switch>
       )}
-      <div className="keepsList">
-        {Object.keys(keeps).map((keepId) => (
-          <Keep key={`keep-`} id={keepId} />
-          // <Keep key={`keep-`} id="string" />
-        ))}
-      </div>
     </>
   );
 }

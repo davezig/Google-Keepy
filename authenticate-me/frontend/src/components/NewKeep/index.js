@@ -1,5 +1,12 @@
+import { useState } from 'react';
+
 function NewKeep() {
-  return <div>newkeep</div>;
+  const [body, setBody] = useState('');
+  return (
+    <>
+      <input type="text" value={body}></input>
+    </>
+  );
 }
 
 export default NewKeep;

@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
-import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
-import Keeps from "./components/Keeps";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import LoginFormPage from './components/LoginFormPage';
+import SignupFormPage from './components/SignupFormPage';
+import * as sessionActions from './store/session';
+import Navigation from './components/Navigation';
+import Keep from './components/Keep';
 
 function App() {
   const dispatch = useDispatch();
+  const keeps = useSelector((state) => state.keeps);
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -27,10 +29,12 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Keeps />
-      <Keeps />
-      <Keeps />
-      <Keeps />
+      <div className="keepsList">
+        {Object.keys(keeps).map((keepId) => (
+          <Keep key={`keep-`} id={keepId} />
+          // <Keep key={`keep-`} id="string" />
+        ))}
+      </div>
     </>
   );
 }

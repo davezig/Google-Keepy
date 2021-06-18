@@ -4,7 +4,11 @@ function NewKeep() {
   const [body, setBody] = useState('');
   return (
     <>
-      <input type="text" value={body}></input>
+      <input
+        type="text"
+        value={body}
+        onInput={(event) => setBody(event.target.value)}
+      ></input>
     </>
   );
 }

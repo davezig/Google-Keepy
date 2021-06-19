@@ -1,0 +1,11 @@
+.newKeep {
+  border: 1px solid red;
+}
+
+.newKeep__closeButton:hover {
+  cursor: pointer;
+}
+
+.newKeep__closeButton {
+  border: 1px dotted blue;
+}

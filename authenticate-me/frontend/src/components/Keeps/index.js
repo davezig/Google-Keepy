@@ -1,39 +1,22 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Card from '../Ui/Card';
+import Keep from '../Keep';
+
 import './Keeps.css';
 
 // []TODO: pass in props to use in title, etc
 // []TODO: create a form to make a new keep item
 const Keeps = () => {
-  const initialValue = [
-    'Test thing',
-    'Other thing',
-    'Third thing to do',
-    'These are constants in Keeps/index.js',
-  ];
-
-  const [tasks, setTasks] = useState(initialValue);
+  const keeps = useSelector((state) => state.keeps);
 
   return (
-    <Card>
-      <section>
-        <ul>
-          <h1 className="title">Title of Keep</h1>
-          {tasks.map((task) => {
-            return (
-              <div>
-                <input type="checkbox"></input>
-                <li>{task}</li>
-              </div>
-            );
-          })}
-
-          {/* <div className="checkbox">
-          <input type="checkbox"></input>
-        </div> */}
-        </ul>
-      </section>
-    </Card>
+    <div className="keepsList">
+      {Object.keys(keeps).map((keepId) => (
+        <Keep key={`keep-`} id={keepId} />
+        // <Keep key={`keep-`} id="string" />
+      ))}
+    </div>
   );
 };
 

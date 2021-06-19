@@ -1,8 +1,8 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ProfileButton from "./ProfileButton";
-import "./Navigation.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import ProfileButton from './ProfileButton';
+import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,7 +22,7 @@ function Navigation({ isLoaded }) {
   return (
     <ul>
       <li>
-        <NavLink exact to="/">
+        <NavLink exact to="/keeps">
           Home
         </NavLink>
         {isLoaded && sessionLinks}

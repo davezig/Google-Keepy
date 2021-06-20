@@ -25,7 +25,7 @@ const Keep = (props) => {
   }
 
   function createNewTask(event) {
-    if (event.code == 'Enter' || event.code == 'NumpadEnter') {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
       dispatch(
         createTaskThunk(props.id, {
           description: newTaskInputField,

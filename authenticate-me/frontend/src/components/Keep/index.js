@@ -61,7 +61,7 @@ const Keep = (props) => {
     <Card>
       {/* <section> */}
       {/* section might not be needed */}
-      <h1 className="title">{keep?.name || 'Title not found'}</h1>
+      <h1 className="title">{keep?.title || 'Title not found'}</h1>
       {notCompletedTasks}
       <input
         type="text"

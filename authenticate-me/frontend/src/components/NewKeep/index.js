@@ -6,8 +6,7 @@ function NewKeep() {
   const [hasFocus, setHasFocus] = useState(false);
   const [currTaskList, setCurrTaskList] = useState([]);
   const [newTaskInputField, setNewTaskInputField] = useState('');
-
-  let counter = 0;
+  const [counter, setCounter] = useState(0);
 
   function getFocus(event) {
     setHasFocus(true);
@@ -19,14 +18,14 @@ function NewKeep() {
   }
 
   function createNewTask(event) {
-    if (event.code == 'Enter' || event.code == 'NumpadEnter') {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
       const task = {
         description: newTaskInputField,
         isComplete: false,
         position: counter,
       };
       setCurrTaskList([...currTaskList, task]);
-      counter++;
+      setCounter(counter + 1);
     }
   }
 

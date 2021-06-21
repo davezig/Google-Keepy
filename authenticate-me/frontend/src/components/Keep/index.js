@@ -68,6 +68,7 @@ const Keep = (props) => {
         onKeyPress={createNewTask}
         value={newTaskInputField}
         onInput={updateTaskInputField}
+        placeholder="+ List item"
       ></input>
       {completedTasks}
       {/* </section> */}

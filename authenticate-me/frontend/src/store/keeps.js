@@ -1,5 +1,6 @@
 const CREATE_TASK = 'keeps/createTask';
 const UPDATE_TASK = 'keeps/updateTask';
+const CREATE_KEEP = 'keeps/createNewKeep';
 
 const createTask = (keep, taskId, task) => {
   return {
@@ -16,6 +17,14 @@ const updateTask = (keep, taskId, task) => {
     keep,
     taskId,
     task,
+  };
+};
+
+const createNewKeep = (keep, keepId) => {
+  return {
+    type: CREATE_KEEP,
+    keep,
+    keepId,
   };
 };
 
@@ -36,10 +45,25 @@ export const updateTaskThunk = (keep, taskId, task) => async (dispatch) => {
   }
   //   return response;
 };
+export const createNewKeepThunk = (title, tasks) => async (dispatch) => {
+  // 1. the React Component (newKeep component) invokes thunk action, passes in title and tasks
+  // 2. Make fetch request to back end to create new keep in database, pass in title and tasks
+  // 3. If no server errors (500), server should return new keep object {title:"title",tasks:{tasks}} and new keepId
+  // 4. Pass new keepId and newKeep object into action creator (createNewKeep is the action creator)
+  // 5. The switch case (in the reducer function) will take the new keepId and the newKeep object and update the redux store
+
+  //   if response is 200
+  console.log(title, tasks);
+  if (true) {
+    const randomTaskId = Math.random();
+    // dispatch(createNewKeep(keep, keepId));
+  }
+  //   return response;
+};
 
 const initialState = {
   keep1: {
-    name: 'Programming Projects',
+    title: 'Programming Projects',
     tasks: {
       task1: {
         description: 'Test thing ashlgshg;alghslghslgslghslghsalgs',
@@ -69,7 +93,7 @@ const initialState = {
     },
   },
   keep2: {
-    name: 'Shopping Lists',
+    title: 'Shopping Lists',
     tasks: {
       task1: {
         description: 'Milk',
@@ -103,6 +127,39 @@ const initialState = {
 const keepsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_TASK:
+      return {
+        ...state,
+        [action.keep]: {
+          ...state[action.keep],
+          tasks: {
+            ...state[action.keep].tasks,
+            [action.taskId]: action.task,
+          },
+        },
+      };
+
+    case UPDATE_TASK:
+      return {
+        ...state,
+        [action.keep]: {
+          ...state[action.keep],
+          tasks: {
+            ...state[action.keep].tasks,
+            [action.taskId]: {
+              ...state[action.keep].tasks[action.taskId],
+              ...action.task,
+            },
+          },
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+const newKeepReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CREATE_KEEP:
       return {
         ...state,
         [action.keep]: {

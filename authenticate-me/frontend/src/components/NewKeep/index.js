@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createNewKeepThunk } from '../../store/keeps';
 import './NewKeep.css';
 
 function NewKeep() {
@@ -7,6 +9,12 @@ function NewKeep() {
   const [currTaskList, setCurrTaskList] = useState([]);
   const [newTaskInputField, setNewTaskInputField] = useState('');
   const [counter, setCounter] = useState(0);
+  const dispatch = useDispatch();
+  function resetNewKeep() {
+    setTitle('');
+    setCurrTaskList([]);
+    setNewTaskInputField('');
+  }
 
   function getFocus(event) {
     setHasFocus(true);
@@ -15,6 +23,8 @@ function NewKeep() {
   function loseFocus(event) {
     event.stopPropagation();
     setHasFocus(false);
+    dispatch(createNewKeepThunk(title, currTaskList));
+    resetNewKeep();
   }
 
   function createNewTask(event) {
@@ -25,6 +35,7 @@ function NewKeep() {
         position: counter,
       };
       setCurrTaskList([...currTaskList, task]);
+      setNewTaskInputField('');
       setCounter(counter + 1);
     }
   }

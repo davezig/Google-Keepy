@@ -19,7 +19,7 @@ const updateTask = (keep, taskId, task) => {
     task,
   };
 };
-
+// this is an ActionCreator
 const createNewKeep = (keep, keepId) => {
   return {
     type: CREATE_KEEP,
@@ -52,13 +52,18 @@ export const createNewKeepThunk = (title, tasks) => async (dispatch) => {
   // 4. Pass new keepId and newKeep object into action creator (createNewKeep is the action creator)
   // 5. The switch case (in the reducer function) will take the new keepId and the newKeep object and update the redux store
 
-  //   if response is 200
   console.log(title, tasks);
+
+  const tempKeep = { title: '', tasks: {} };
+  tempKeep.title = title;
+  tasks.forEach((element) => {
+    tempKeep.tasks[Math.random()] = element;
+  });
+
+  //   if response is 200
   if (true) {
-    const randomTaskId = Math.random();
-    // dispatch(createNewKeep(keep, keepId));
+    dispatch(createNewKeep(tempKeep, Math.random()));
   }
-  //   return response;
 };
 
 const initialState = {
@@ -152,39 +157,13 @@ const keepsReducer = (state = initialState, action) => {
           },
         },
       };
-    default:
-      return state;
-  }
-};
 
-const newKeepReducer = (state = initialState, action) => {
-  switch (action.type) {
     case CREATE_KEEP:
       return {
         ...state,
-        [action.keep]: {
-          ...state[action.keep],
-          tasks: {
-            ...state[action.keep].tasks,
-            [action.taskId]: action.task,
-          },
-        },
+        [action.keepId]: action.keep,
       };
 
-    case UPDATE_TASK:
-      return {
-        ...state,
-        [action.keep]: {
-          ...state[action.keep],
-          tasks: {
-            ...state[action.keep].tasks,
-            [action.taskId]: {
-              ...state[action.keep].tasks[action.taskId],
-              ...action.task,
-            },
-          },
-        },
-      };
     default:
       return state;
   }

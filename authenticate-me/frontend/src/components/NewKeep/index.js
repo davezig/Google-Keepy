@@ -10,10 +10,12 @@ function NewKeep() {
   const [newTaskInputField, setNewTaskInputField] = useState('');
   const [counter, setCounter] = useState(0);
   const dispatch = useDispatch();
+
   function resetNewKeep() {
     setTitle('');
     setCurrTaskList([]);
     setNewTaskInputField('');
+    setCounter(0);
   }
 
   function getFocus(event) {

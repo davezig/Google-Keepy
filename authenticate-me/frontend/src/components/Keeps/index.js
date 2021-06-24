@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Card from '../Ui/Card';
+// import React, { useState } from 'react';
+// import Card from '../Ui/Card';
+//  Card & useState was not being used yet. React error
 import Keep from '../Keep';
 
 import './Keeps.css';
@@ -13,7 +14,7 @@ const Keeps = () => {
   return (
     <div className="keepsList">
       {Object.keys(keeps).map((keepId) => (
-        <Keep key={`keep-`} id={keepId} />
+        <Keep key={`keep-${keepId}`} id={keepId} />
         // <Keep key={`keep-`} id="string" />
       ))}
     </div>

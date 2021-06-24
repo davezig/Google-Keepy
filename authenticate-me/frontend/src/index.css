@@ -1,8 +1,12 @@
 /* TODO Add site wide styles */
 
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 .keepsList {
   display: flex;
   /* border: 1px solid red; */
-  padding: 15px;
-  margin: 15px;
 }

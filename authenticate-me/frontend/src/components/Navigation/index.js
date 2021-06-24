@@ -20,14 +20,13 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/keeps">
-          Home
-        </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="navbar">
+      <NavLink exact to="/keeps">
+        Keepy
+      </NavLink>
+      {/* {isLoaded && sessionLinks} */}
+      <i className="far fa-user"></i>
+    </div>
   );
 }
 

@@ -34,29 +34,29 @@ function ProfileButton({ user }) {
   let icon;
   if (sessionUser) {
     dropdownMenu = (
-      <ul className="profile-dropdown">
-        <li>{sessionUser.username}</li>
-        <li>{sessionUser.email}</li>
-        <li>
-          <button onClick={logout}>Log Out</button>
-        </li>
-      </ul>
+      <>
+        <p>{sessionUser.username}</p>
+        <p>{sessionUser.email}</p>
+        <p onClick={logout}>Log Out</p>
+      </>
     );
     icon = <p>{sessionUser.username[0].toUpperCase()}</p>;
   } else {
     dropdownMenu = (
-      <div>
+      <>
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
-      </div>
+      </>
     );
-    icon = <i className="fas fa-user-circle" />;
+    icon = <i className="fas fa-user" />;
   }
 
   return (
     <>
-      <div onClick={openMenu}> {icon}</div>
-      {showMenu && dropdownMenu}
+      <div onClick={openMenu} className="profile-icon">
+        {icon}
+      </div>
+      {showMenu && <div className="profile-dropdown">{dropdownMenu}</div>}
     </>
   );
 }

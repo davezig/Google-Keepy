@@ -4,6 +4,9 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+
+  --main-color: #202124;
+  --text-color: #e8eaed;
 }
 
 .keepsList {

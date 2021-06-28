@@ -7,7 +7,7 @@ import './Navigation.css';
 function Navigation({ isLoaded }) {
   return (
     <div className="navbar">
-      <NavLink exact to="/keeps">
+      <NavLink exact to="/keeps" title="Keepy">
         Keepy
       </NavLink>
       {isLoaded && <ProfileButton />}

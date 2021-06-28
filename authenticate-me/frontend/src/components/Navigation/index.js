@@ -24,8 +24,7 @@ function Navigation({ isLoaded }) {
       <NavLink exact to="/keeps">
         Keepy
       </NavLink>
-      {/* {isLoaded && sessionLinks} */}
-      <i className="far fa-user"></i>
+      {isLoaded && sessionLinks}
     </div>
   );
 }

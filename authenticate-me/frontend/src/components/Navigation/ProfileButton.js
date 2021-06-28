@@ -31,6 +31,7 @@ function ProfileButton({ user }) {
   };
 
   let dropdownMenu;
+  let icon;
   if (sessionUser) {
     dropdownMenu = (
       <ul className="profile-dropdown">
@@ -41,6 +42,7 @@ function ProfileButton({ user }) {
         </li>
       </ul>
     );
+    icon = <p>{sessionUser.username[0].toUpperCase()}</p>;
   } else {
     dropdownMenu = (
       <div>
@@ -48,13 +50,12 @@ function ProfileButton({ user }) {
         <NavLink to="/signup">Sign Up</NavLink>
       </div>
     );
+    icon = <i className="fas fa-user-circle" />;
   }
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <div onClick={openMenu}> {icon}</div>
       {showMenu && dropdownMenu}
     </>
   );

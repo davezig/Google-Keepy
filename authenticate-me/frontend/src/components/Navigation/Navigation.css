@@ -40,6 +40,8 @@
 
 .profile-dropdown {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 100%;
   right: 8px;
   background-color: var(--main-color);
@@ -48,6 +50,8 @@
 .profile-dropdown > :is(a, p) {
   padding: 8px;
   background-color: inherit;
+  color: inherit;
+  text-decoration: none;
 }
 
 .profile-dropdown > :is(a, p):hover {

@@ -42,4 +42,14 @@
   position: absolute;
   top: 100%;
   right: 8px;
+  background-color: var(--main-color);
+}
+
+.profile-dropdown > :is(a, p) {
+  padding: 8px;
+  background-color: inherit;
+}
+
+.profile-dropdown > :is(a, p):hover {
+  filter: brightness(1.9);
 }

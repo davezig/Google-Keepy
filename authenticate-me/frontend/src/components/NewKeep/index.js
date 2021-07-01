@@ -62,6 +62,7 @@ function NewKeep() {
         type="text"
         value={newTaskInputField}
         placeholder="Take a note..."
+        className="newKeep__newTask"
         onInput={(event) => setNewTaskInputField(event.target.value)}
       ></input>
       {hasFocus && (

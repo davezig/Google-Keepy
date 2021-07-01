@@ -1,5 +1,3 @@
-/* TODO Add site wide styles */
-
 * {
   padding: 0px;
   margin: 0px;
@@ -12,4 +10,8 @@
 .keepsList {
   display: flex;
   /* border: 1px solid red; */
+}
+
+html {
+  background-color: var(--main-color);
 }

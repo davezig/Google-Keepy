@@ -46,9 +46,10 @@ function NewKeep() {
     <div className="newKeep" onClick={getFocus}>
       {hasFocus && (
         <input
+          className="newKeep__title"
           type="text"
           value={title}
-          placeholder="Title"
+          placeholder=" Title"
           onInput={(event) => setTitle(event.target.value)}
         ></input>
       )}
@@ -61,7 +62,7 @@ function NewKeep() {
         onKeyPress={createNewTask}
         type="text"
         value={newTaskInputField}
-        placeholder="Take a note..."
+        placeholder=" Take a note..."
         className="newKeep__newTask"
         onInput={(event) => setNewTaskInputField(event.target.value)}
       ></input>

@@ -1,10 +1,15 @@
 .keep {
   border: var(--border-custom);
   border-radius: 8px;
+  padding: 12px;
 }
 
 .completed {
   text-decoration: line-through;
+}
+
+.keep__tasks {
+  padding: 0 12px;
 }
 
 .keep__completedTasks {

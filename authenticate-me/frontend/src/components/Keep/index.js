@@ -64,17 +64,19 @@ const Keep = (props) => {
   return (
     <div className="keep">
       <h1 className="keep__title">{keep?.title || 'Title not found'}</h1>
-      {notCompletedTasks}
-      <input
-        type="text"
-        onKeyPress={createNewTask}
-        value={newTaskInputField}
-        onInput={updateTaskInputField}
-        placeholder="+ List item"
-      ></input>
-      <div className="keep__completedTasks">
-        <p>{completedTasks.length} Completed Items</p>
-        <div>{completedTasks}</div>
+      <div className="keep__tasks">
+        {notCompletedTasks}
+        <input
+          type="text"
+          onKeyPress={createNewTask}
+          value={newTaskInputField}
+          onInput={updateTaskInputField}
+          placeholder="+ List item"
+        ></input>
+        <div className="keep__completedTasks">
+          <p>{completedTasks.length} Completed Items</p>
+          <div>{completedTasks}</div>
+        </div>
       </div>
     </div>
   );

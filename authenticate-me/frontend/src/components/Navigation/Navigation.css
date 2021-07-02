@@ -9,6 +9,7 @@
 
   background-color: var(--main-color);
   color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navbar > a[title='Keepy'] {

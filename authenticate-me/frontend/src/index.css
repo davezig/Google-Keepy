@@ -4,6 +4,8 @@
   box-sizing: border-box;
   --main-color: #202124;
   --text-color: #e8eaed;
+  --border-color: rgb(85, 88, 93);
+  --border-custom: 1px solid var(--border-color);
 }
 
 .keepsList {

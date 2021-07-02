@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   padding: 8px;
-  /* max-width: 600px; */
-  max-width: 400px;
+  max-width: 600px;
+  /* max-width: 400px; */
   margin: 16px auto;
   background-color: var(--main-color);
 }
@@ -14,30 +14,55 @@
 .newKeep__title {
   font-size: 21px;
   margin-bottom: 24px;
+  background: none;
+  border: none;
+  color: var(--text-color);
 }
 
 .newKeep :nth-child(n + 3) {
   margin-top: 8px;
 }
 
-.newKeep__newTask::placeholder {
-  font-size: 12px;
-}
+/* .newKeep > :is(input, p) {
+  background: none;
+  border: none;
+  color: var(--text-color);
+} */
 
-.newKeep > :is(input, p) {
+.newKeep__title {
+  background: none;
+  border: none;
+  color: var(--text-color);
+}
+.newKeep__newTask {
   background: none;
   border: none;
   color: var(--text-color);
 }
 
-.newKeep > input:focus {
-  outline: none;
+.newKeep__newTask::placeholder {
+  font-size: 12px;
+}
+
+.newKeep__mappedTasks {
+  background: none;
+  border: none;
+  color: var(--text-color);
 }
 
 .newKeep__closeButton {
   align-self: flex-end;
+  padding: 8px 24px;
+  border-radius: 8px;
+  /* border: 1px solid red; */
+  color: var(--text-color);
 }
 
 .newKeep__closeButton:hover {
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.newKeep > input:focus {
+  outline: none;
 }

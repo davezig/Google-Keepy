@@ -9,7 +9,6 @@ const Keep = (props) => {
   const { [props.id]: keep } = useSelector((state) => state.keeps);
   // this is destructured and the key is the value of props.id and then the :keep is assigning the destructured value to the alias of keep
 
-
   // const currTaskList = keep?.tasks || [];
   // above is commented because it wasn't being used in the code yet and threw an error in react
   const [newTaskInputField, setNewTaskInputField] = useState('');
@@ -42,7 +41,10 @@ const Keep = (props) => {
   for (const taskId in keep.tasks) {
     const task = keep.tasks[taskId];
     const template = (
-      <div className={task.isComplete ? 'completed' : ''} key={`task-${taskId}`}>
+      <div
+        className={task.isComplete ? 'completed' : ''}
+        key={`task-${taskId}`}
+      >
         <input
           type="checkbox"
           checked={task.isComplete}
@@ -60,10 +62,8 @@ const Keep = (props) => {
   }
 
   return (
-    <Card>
-      {/* <section> */}
-      {/* section might not be needed */}
-      <h1 className="title">{keep?.title || 'Title not found'}</h1>
+    <div className="keep">
+      <h1 className="keep__title">{keep?.title || 'Title not found'}</h1>
       {notCompletedTasks}
       <input
         type="text"
@@ -72,9 +72,11 @@ const Keep = (props) => {
         onInput={updateTaskInputField}
         placeholder="+ List item"
       ></input>
-      {completedTasks}
-      {/* </section> */}
-    </Card>
+      <div className="keep__completedTasks">
+        <p>{completedTasks.length} Completed Items</p>
+        <div>{completedTasks}</div>
+      </div>
+    </div>
   );
 };
 

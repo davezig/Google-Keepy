@@ -1,6 +1,12 @@
-.title {
+.keep {
+  border: var(--border-custom);
+  border-radius: 8px;
 }
 
 .completed {
   text-decoration: line-through;
+}
+
+.keep__completedTasks {
+  border-top: var(--border-custom);
 }

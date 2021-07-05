@@ -43,7 +43,7 @@ const Keep = (props) => {
     const task = keep.tasks[taskId];
     const template = (
       <div
-        className={task.isComplete ? 'completed' : ''}
+        className={`keep__task ${task.isComplete ? 'completed' : ''}`}
         key={`task-${taskId}`}
       >
         <input
@@ -66,14 +66,16 @@ const Keep = (props) => {
     <div className="keep">
       <h1 className="keep__title">{keep?.title || 'Title not found'}</h1>
       <div className="keep__tasks">
-        {notCompletedTasks}
-        <input
-          type="text"
-          onKeyPress={createNewTask}
-          value={newTaskInputField}
-          onInput={updateTaskInputField}
-          placeholder="+ List item"
-        ></input>
+        <div className="keep__notCompletedTasks">
+          {notCompletedTasks}
+          <input
+            type="text"
+            onKeyPress={createNewTask}
+            value={newTaskInputField}
+            onInput={updateTaskInputField}
+            placeholder="+ List item"
+          ></input>
+        </div>
         <div className="keep__completedTasks">
           <div>
             <i
@@ -83,7 +85,7 @@ const Keep = (props) => {
             <span>{completedTasks.length} Completed Items</span>
           </div>
 
-          {showTasks && <div>{completedTasks}</div>}
+          {showTasks && completedTasks}
         </div>
       </div>
       <p className="keep__date" title={Date.now()}>

@@ -1,10 +1,10 @@
-"use strict";
-const bcrypt = require("bcryptjs");
-const { Validator } = require("sequelize");
+'use strict';
+const bcrypt = require('bcryptjs');
+const { Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "User",
+    'User',
     {
       username: {
         type: DataTypes.STRING,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
           len: [3, 30],
           isNotEmail(value) {
             if (Validator.isEmail(value)) {
-              throw new Error("Cannot be an email.");
+              throw new Error('Cannot be an email.');
             }
           },
         },
@@ -36,12 +36,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
+          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
         },
       },
       scopes: {
         currentUser: {
-          attributes: { exclude: ["hashedPassword"] },
+          attributes: { exclude: ['hashedPassword'] },
         },
         loginUser: {
           attributes: {},
@@ -51,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function (models) {
     // associations can be defined here
+    User.hasMany(models.Keep, { foreignKey: 'userId' });
 
     User.prototype.toSafeObject = function () {
       // remember, this cannot be an arrow function
@@ -63,12 +64,12 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     User.getCurrentUserById = async function (id) {
-      return await User.scope("currentUser").findByPk(id);
+      return await User.scope('currentUser').findByPk(id);
     };
 
     User.login = async function ({ credential, password }) {
-      const { Op } = require("sequelize");
-      const user = await User.scope("loginUser").findOne({
+      const { Op } = require('sequelize');
+      const user = await User.scope('loginUser').findOne({
         where: {
           [Op.or]: {
             username: credential,
@@ -77,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
       if (user && user.validatePassword(password)) {
-        return await User.scope("currentUser").findByPk(user.id);
+        return await User.scope('currentUser').findByPk(user.id);
       }
     };
 
@@ -88,7 +89,7 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword,
       });
-      return await User.scope("currentUser").findByPk(user.id);
+      return await User.scope('currentUser').findByPk(user.id);
     };
   };
   return User;

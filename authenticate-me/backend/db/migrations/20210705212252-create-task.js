@@ -6,31 +6,35 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       description: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(255),
       },
       isComplete: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
       },
       position: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       keepId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Keeps' },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Tasks');
-  }
+  },
 };

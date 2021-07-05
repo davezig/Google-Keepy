@@ -9,10 +9,10 @@ const Keep = (props) => {
   const { [props.id]: keep } = useSelector((state) => state.keeps);
   // this is destructured and the key is the value of props.id and then the :keep is assigning the destructured value to the alias of keep
 
-
   // const currTaskList = keep?.tasks || [];
   // above is commented because it wasn't being used in the code yet and threw an error in react
   const [newTaskInputField, setNewTaskInputField] = useState('');
+  const [showTasks, setShowTasks] = useState(true);
 
   const completedTasks = [];
   const notCompletedTasks = [];
@@ -20,10 +20,8 @@ const Keep = (props) => {
     setNewTaskInputField(event.target.value);
   }
 
-  function updateCompleted(event, taskId) {
-    dispatch(
-      updateTaskThunk(props.id, taskId, { isComplete: event.target.checked })
-    );
+  function updateCompleted(isComplete, taskId) {
+    dispatch(updateTaskThunk(props.id, taskId, { isComplete }));
   }
 
   function createNewTask(event) {
@@ -42,12 +40,15 @@ const Keep = (props) => {
   for (const taskId in keep.tasks) {
     const task = keep.tasks[taskId];
     const template = (
-      <div className={task.isComplete ? 'completed' : ''} key={`task-${taskId}`}>
-        <input
-          type="checkbox"
-          checked={task.isComplete}
-          onChange={(event) => updateCompleted(event, taskId)}
-        ></input>
+      <div
+        className={`keep__task ${task.isComplete ? 'completed' : ''}`}
+        key={`task-${taskId}`}
+      >
+        <i
+          className={`far ${task.isComplete ? 'fa-check-square' : 'fa-square'}`}
+          onClick={() => updateCompleted(!task.isComplete, taskId)}
+        ></i>
+
         {task.description}
       </div>
     );
@@ -60,21 +61,35 @@ const Keep = (props) => {
   }
 
   return (
-    <Card>
-      {/* <section> */}
-      {/* section might not be needed */}
-      <h1 className="title">{keep?.title || 'Title not found'}</h1>
-      {notCompletedTasks}
-      <input
-        type="text"
-        onKeyPress={createNewTask}
-        value={newTaskInputField}
-        onInput={updateTaskInputField}
-        placeholder="+ List item"
-      ></input>
-      {completedTasks}
-      {/* </section> */}
-    </Card>
+    <div className="keep">
+      <h1 className="keep__title">{keep?.title || 'Title not found'}</h1>
+      <div className="keep__tasks">
+        <div className="keep__notCompletedTasks">
+          {notCompletedTasks}
+          <input
+            type="text"
+            onKeyPress={createNewTask}
+            value={newTaskInputField}
+            onInput={updateTaskInputField}
+            placeholder="+ List item"
+          ></input>
+        </div>
+        <div className="keep__completedTasks">
+          <div>
+            <i
+              className={`fas fa-chevron-${showTasks ? 'down' : 'right'}`}
+              onClick={() => setShowTasks(!showTasks)}
+            ></i>
+            <span>{completedTasks.length} Completed Items</span>
+          </div>
+
+          {showTasks && completedTasks}
+        </div>
+      </div>
+      <p className="keep__date" title={Date.now()}>
+        Edited 24:00
+      </p>
+    </div>
   );
 };
 

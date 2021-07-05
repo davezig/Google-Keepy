@@ -75,15 +75,20 @@ const Keep = (props) => {
           placeholder="+ List item"
         ></input>
         <div className="keep__completedTasks">
-          <i
-            className={`fas fa-chevron-${showTasks ? 'down' : 'right'}`}
-            onClick={() => setShowTasks(!showTasks)}
-          ></i>
-          <span>{completedTasks.length} Completed Items</span>
+          <div>
+            <i
+              className={`fas fa-chevron-${showTasks ? 'down' : 'right'}`}
+              onClick={() => setShowTasks(!showTasks)}
+            ></i>
+            <span>{completedTasks.length} Completed Items</span>
+          </div>
 
           {showTasks && <div>{completedTasks}</div>}
         </div>
       </div>
+      <p className="keep__date" title={Date.now()}>
+        Edited 24:00
+      </p>
     </div>
   );
 };

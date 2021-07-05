@@ -18,13 +18,19 @@
   color: var(--text-secondary-color);
 }
 
-.keep__completedTasks > i {
+.keep__completedTasks i {
   width: 16px;
   text-align: center;
 }
 
 .keep__completedTasks span {
   margin-left: 4px;
+}
+
+.keep__date {
+  text-align: right;
+  color: var(--text-secondary-color);
+  font-size: 12px;
 }
 
 .completed {

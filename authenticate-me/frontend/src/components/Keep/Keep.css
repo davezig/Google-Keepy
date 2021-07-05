@@ -4,14 +4,29 @@
   padding: 12px;
 }
 
-.completed {
-  text-decoration: line-through;
+.keep__title {
+  color: var(--text-primary-color);
 }
 
 .keep__tasks {
   padding: 0 12px;
+  color: var(--text-primary-color);
 }
 
 .keep__completedTasks {
   border-top: var(--border-custom);
+  color: var(--text-secondary-color);
+}
+
+.keep__completedTasks > i {
+  width: 16px;
+  text-align: center;
+}
+
+.keep__completedTasks span {
+  margin-left: 4px;
+}
+
+.completed {
+  text-decoration: line-through;
 }

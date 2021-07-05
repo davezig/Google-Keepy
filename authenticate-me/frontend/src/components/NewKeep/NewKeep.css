@@ -16,7 +16,7 @@
   margin-bottom: 24px;
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 }
 
 .newKeep :nth-child(n + 3) {
@@ -26,18 +26,18 @@
 /* .newKeep > :is(input, p) {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 } */
 
 .newKeep__title {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 }
 .newKeep__newTask {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 }
 
 .newKeep__newTask::placeholder {
@@ -47,14 +47,14 @@
 .newKeep__mappedTasks {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 }
 
 .newKeep__closeButton {
   align-self: flex-end;
   padding: 8px 24px;
   border-radius: 8px;
-  color: var(--text-color);
+  color: var(--text-primary-color);
 }
 
 .newKeep__closeButton:hover {

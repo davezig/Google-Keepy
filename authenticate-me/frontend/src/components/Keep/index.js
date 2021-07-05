@@ -12,6 +12,7 @@ const Keep = (props) => {
   // const currTaskList = keep?.tasks || [];
   // above is commented because it wasn't being used in the code yet and threw an error in react
   const [newTaskInputField, setNewTaskInputField] = useState('');
+  const [showTasks, setShowTasks] = useState(true);
 
   const completedTasks = [];
   const notCompletedTasks = [];
@@ -74,8 +75,13 @@ const Keep = (props) => {
           placeholder="+ List item"
         ></input>
         <div className="keep__completedTasks">
-          <p>{completedTasks.length} Completed Items</p>
-          <div>{completedTasks}</div>
+          <i
+            className={`fas fa-chevron-${showTasks ? 'down' : 'right'}`}
+            onClick={() => setShowTasks(!showTasks)}
+          ></i>
+          <span>{completedTasks.length} Completed Items</span>
+
+          {showTasks && <div>{completedTasks}</div>}
         </div>
       </div>
     </div>

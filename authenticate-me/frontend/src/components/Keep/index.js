@@ -46,6 +46,9 @@ const Keep = (props) => {
         className={`keep__task ${task.isComplete ? 'completed' : ''}`}
         key={`task-${taskId}`}
       >
+        <i
+          className={`far ${task.isComplete ? 'fa-check-square' : 'fa-square'}`}
+        ></i>
         <input
           type="checkbox"
           checked={task.isComplete}

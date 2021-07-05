@@ -20,10 +20,8 @@ const Keep = (props) => {
     setNewTaskInputField(event.target.value);
   }
 
-  function updateCompleted(event, taskId) {
-    dispatch(
-      updateTaskThunk(props.id, taskId, { isComplete: event.target.checked })
-    );
+  function updateCompleted(isComplete, taskId) {
+    dispatch(updateTaskThunk(props.id, taskId, { isComplete }));
   }
 
   function createNewTask(event) {
@@ -48,12 +46,9 @@ const Keep = (props) => {
       >
         <i
           className={`far ${task.isComplete ? 'fa-check-square' : 'fa-square'}`}
+          onClick={() => updateCompleted(!task.isComplete, taskId)}
         ></i>
-        <input
-          type="checkbox"
-          checked={task.isComplete}
-          onChange={(event) => updateCompleted(event, taskId)}
-        ></input>
+
         {task.description}
       </div>
     );

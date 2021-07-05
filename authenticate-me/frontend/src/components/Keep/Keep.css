@@ -2,19 +2,22 @@
   border: var(--border-custom);
   border-radius: 8px;
   padding: 12px;
+  width: 216px;
+  min-width: 216px;
 }
 
 .keep__title {
   color: var(--text-primary-color);
+  font-size: 18px;
 }
 
-.keep__task input {
+.keep__task {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.keep__task i {
   margin-right: 4px;
-  border: 1px solid red;
-}
-
-.keep__task input:active {
-  background-color: yellow;
 }
 
 .keep__tasks {
@@ -48,6 +51,10 @@
   color: var(--text-secondary-color);
 }
 
+.keep__completedTasks div:hover {
+  color: var(--text-primary-color);
+}
+
 .keep__completedTasks i {
   width: 16px;
   text-align: center;
@@ -60,7 +67,8 @@
 .keep__date {
   margin-top: 12px;
   text-align: right;
-  color: var(--text-secondary-color);
+  /* color: var(--text-secondary-color); */
+  color: yellowgreen;
   font-size: 12px;
 }
 

@@ -7,22 +7,25 @@ const router = express.Router();
 
 router.post(
   '',
+  requireAuth,
   asyncHandler(async (req, res) => {
-    return res.json({});
+    const { id } = req.user;
+    console.log(id);
+    return res.json({ message: 'Test new keeps post' });
   })
 );
 
 router.get(
   '',
   asyncHandler(async (req, res) => {
-    return res.json({});
+    return res.json({ message: 'Test a keeps get' });
   })
 );
 
 router.delete(
   '/:id',
   asyncHandler(async (req, res) => {
-    return res.json({});
+    return res.json({ message: 'Test a keeps delete' });
   })
 );
 

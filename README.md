@@ -1,11 +1,21 @@
 # "Google Keepy"
 
+#### drawSQL database schema
+
+https://drawsql.app/dave-2/diagrams/google-keepy
+
 MVPs:
 
 - [ ] Create a task list
 - [ ] Add a task to the list and have an empty checkbox next to it
 - [ ] Checked items move to the bottom and are "strikethrough"
 - [ ] _this one if necessary_ Light and Dark Mode
+
+Version 2.0 Revisions:
+
+- [ ] Dynamic resizing of Keep if it has more or less content in it
+- [ ] Media screen for keeps.css for more columns ( Currently only 2 3 or 4 columns)
+- [ ] "Take a note..." bar does not dynamically resize based on media screen
 
 Plan:
 

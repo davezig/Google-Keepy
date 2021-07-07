@@ -1,21 +1,25 @@
-const router = require("express").Router();
-const sessionRouter = require("./session.js");
-const usersRouter = require("./users.js");
+const router = require('express').Router();
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
+const keepsRouter = require('./keeps.js');
+const tasksRouter = require('./tasks.js');
 
-router.post("/test", function (req, res) {
+// POST localhost:5000/api/test
+router.post('/test', function (req, res) {
+  console.log('test words here');
   res.json({ requestBody: req.body });
 });
 
 // GET /api/set-token-cookie
-const asyncHandler = require("express-async-handler");
-const { setTokenCookie } = require("../../utils/auth.js");
-const { User } = require("../../db/models");
+const asyncHandler = require('express-async-handler');
+const { setTokenCookie } = require('../../utils/auth.js');
+const { User } = require('../../db/models');
 router.get(
-  "/set-token-cookie",
+  '/set-token-cookie',
   asyncHandler(async (req, res) => {
     const user = await User.findOne({
       where: {
-        username: "Demo-lition",
+        username: 'Demo-lition',
       },
     });
     setTokenCookie(res, user);
@@ -24,18 +28,20 @@ router.get(
 );
 
 // GET /api/restore-user
-const { restoreUser } = require("../../utils/auth.js");
-router.get("/restore-user", restoreUser, (req, res) => {
+const { restoreUser } = require('../../utils/auth.js');
+router.get('/restore-user', restoreUser, (req, res) => {
   return res.json(req.user);
 });
 
 // GET /api/require-auth
-const { requireAuth } = require("../../utils/auth.js");
-router.get("/require-auth", requireAuth, (req, res) => {
+const { requireAuth } = require('../../utils/auth.js');
+router.get('/require-auth', requireAuth, (req, res) => {
   return res.json(req.user);
 });
 
-router.use("/session", sessionRouter);
-router.use("/users", usersRouter);
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
+router.use('/keeps', keepsRouter);
+router.use('/tasks', tasksRouter);
 
 module.exports = router;

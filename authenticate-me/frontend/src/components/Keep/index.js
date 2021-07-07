@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTaskThunk, createTaskThunk } from '../../store/keeps';
-import Card from '../Ui/Card';
+
 import './Keep.css';
 
 const Keep = (props) => {

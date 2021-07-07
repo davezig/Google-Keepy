@@ -9,10 +9,22 @@ const router = express.Router();
 // POST localhost:5000/api/tasks
 router.post(
   '',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { tasks } = req.body;
-    const newTasks = await Task.bulkCreate(tasks);
+    const newTasks = Object.assign(
+      {},
+      ...(await Task.bulkCreate(tasks)).map((task) => {
+        const { description, isComplete, position } = task;
+        return {
+          [task.id]: {
+            description,
+            isComplete,
+            position,
+          },
+        };
+      })
+    );
 
     return res.json({ count: newTasks.length, tasks: newTasks });
   })
@@ -21,7 +33,7 @@ router.post(
 // PATCH localhost:5000/api/tasks/:id
 router.patch(
   '/:id',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
@@ -36,7 +48,7 @@ router.patch(
 // DELETE localhost:5000/api/tasks/:id
 router.delete(
   '/:id',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const task = await Task.destroy({ where: { id } });

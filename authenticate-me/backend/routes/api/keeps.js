@@ -7,10 +7,12 @@ const router = express.Router();
 
 router.post(
   '',
-  requireAuth,
+  //   requireAuth,
   asyncHandler(async (req, res) => {
-    const { id } = req.user;
-    console.log(id);
+    const { title } = req.body;
+    // const { id: userId } = req.user;
+    const userId = 1;
+    console.log(req.body);
     return res.json({ message: 'Test new keeps post' });
   })
 );

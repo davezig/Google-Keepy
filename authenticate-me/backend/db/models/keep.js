@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Keep.associate = function (models) {
     // associations can be defined here
-    Keep.belongsTo(models.User, { foreignKey: 'userId' });
+    Keep.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' });
     Keep.hasMany(models.Task, { foreignKey: 'keepId' });
   };
   return Keep;

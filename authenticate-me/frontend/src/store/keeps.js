@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 const CREATE_TASK = 'keeps/createTask';
 const UPDATE_TASK = 'keeps/updateTask';
 const CREATE_KEEP = 'keeps/createNewKeep';
+const READ_KEEPS = 'keeps/readKeeps';
 
 const createTask = (keep, taskId, task) => {
   return {
@@ -27,6 +28,13 @@ const createNewKeep = (keep, keepId) => {
     type: CREATE_KEEP,
     keep,
     keepId,
+  };
+};
+
+const readKeeps = (keeps) => {
+  return {
+    type: READ_KEEPS,
+    keeps,
   };
 };
 
@@ -87,6 +95,17 @@ export const createNewKeepThunk = (title, tasks) => async (dispatch) => {
 
       dispatch(createNewKeep(keep, keepData.keep.id));
     }
+  }
+};
+
+export const getKeepsThunk = () => async (dispatch) => {
+  const response = await csrfFetch('/api/keeps', {
+    method: 'GET',
+  });
+  //   if response is 200
+  if (response.status === 200) {
+    const { keeps } = await response.json();
+    dispatch(readKeeps(keeps));
   }
 };
 
@@ -156,6 +175,12 @@ const keepsReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.keepId]: action.keep,
+      };
+
+    case READ_KEEPS:
+      return {
+        ...state,
+        ...action.keeps,
       };
 
     default:

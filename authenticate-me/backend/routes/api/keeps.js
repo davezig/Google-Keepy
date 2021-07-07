@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Keep } = require('../../db/models');
+const { Keep, Task } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -29,7 +29,34 @@ router.get(
   asyncHandler(async (req, res) => {
     const { id: userId } = req.user;
 
-    const keeps = await Keep.findAll({ where: { userId } });
+    const keeps = Object.assign(
+      {},
+      ...(
+        await Keep.findAll({
+          where: { userId },
+          include: [{ model: Task }],
+        })
+      ).map((keep) => {
+        return {
+          [keep.id]: {
+            title: keep.title,
+            tasks: Object.assign(
+              {},
+              ...keep.Tasks.map((task) => {
+                const { description, isComplete, position } = task;
+                return {
+                  [task.id]: {
+                    description,
+                    isComplete,
+                    position,
+                  },
+                };
+              })
+            ),
+          },
+        };
+      })
+    );
     return res.json({ count: keeps.length, keeps });
   })
 );

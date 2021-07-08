@@ -39,11 +39,16 @@ const readKeeps = (keeps) => {
 };
 
 export const createTaskThunk = (keep, task) => async (dispatch) => {
+  task.keepId = keep;
+  const response = await csrfFetch('/api/tasks', {
+    method: 'POST',
+    body: JSON.stringify({ tasks: [task] }),
+  });
   //   if response is 200
-  console.log(keep, task);
-  if (true) {
-    const randomTaskId = Math.random();
-    dispatch(createTask(keep, randomTaskId, task));
+  if (response.status === 200) {
+    const data = await response.json();
+
+    dispatch(createTask(keep, Object.keys(data.tasks)[0], task));
   }
   //   return response;
 };

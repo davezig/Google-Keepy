@@ -54,9 +54,15 @@ export const createTaskThunk = (keep, task) => async (dispatch) => {
 };
 
 export const updateTaskThunk = (keep, taskId, task) => async (dispatch) => {
+  const response = await csrfFetch(`/api/tasks/${taskId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ data: task }),
+  });
   //   if response is 200
-  if (true) {
-    dispatch(updateTask(keep, taskId, task));
+  if (response.status === 200) {
+    const { tasks } = await response.json();
+    const { description, isComplete, position } = tasks[0];
+    dispatch(updateTask(keep, taskId, { description, isComplete, position }));
   }
   //   return response;
 };

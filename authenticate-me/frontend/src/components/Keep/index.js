@@ -21,7 +21,12 @@ const Keep = (props) => {
   }
 
   function updateCompleted(isComplete, taskId) {
-    dispatch(updateTaskThunk(props.id, taskId, { isComplete }));
+    dispatch(
+      updateTaskThunk(props.id, taskId, {
+        column: 'isComplete',
+        value: isComplete,
+      })
+    );
   }
 
   function createNewTask(event) {

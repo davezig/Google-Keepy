@@ -4,14 +4,24 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+
+  font-family: 'Roboto', sans-serif;
+
   --main-color: #202124;
   --text-primary-color: #e8eaed;
   --text-secondary-color: rgb(85, 88, 93);
   --border-color: rgb(85, 88, 93);
   --border-custom: 1px solid var(--border-color);
-  font-family: 'Roboto', sans-serif;
+
+  --light-mode-background-color: rgb(240, 229, 229);
+  --light-mode-text-primary-color: rgb(0, 0, 0);
+  --light-mode-text-secondary-color: rgb(156, 147, 147);
 }
 
-html {
+/* html {
   background-color: var(--main-color);
+} */
+
+html {
+  background-color: var(--light-mode-background-color);
 }

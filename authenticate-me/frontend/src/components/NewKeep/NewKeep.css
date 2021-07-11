@@ -1,3 +1,5 @@
+/* Dark mode (default app settings) */
+/*
 .newKeep {
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -6,7 +8,6 @@
   flex-direction: column;
   padding: 8px;
   max-width: 600px;
-  /* max-width: 400px; */
   margin: 16px auto;
   background-color: var(--main-color);
 }
@@ -23,13 +24,14 @@
   margin-top: 8px;
 }
 
-/* .newKeep > :is(input, p) {
-  background: none;
-  border: none;
-  color: var(--text-primary-color);
-} */
+/*! .newkeep > :is(input, p) SHOULD STAY COMMENTED OUT!!! */
+/* .newKeep > :is(input, p) { */
+/* background: none; */
+/* border: none; */
+/* color: var(--text-primary-color); */
+/* } */
 
-.newKeep__title {
+/* .newKeep__title {
   background: none;
   border: none;
   color: var(--text-primary-color);
@@ -60,6 +62,75 @@
 .newKeep__closeButton:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.newKeep > input:focus {
+  outline: none;
+} */
+
+/* Light mode settings below */
+.newKeep {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: -2px 2px 8px 1px #00000077;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  max-width: 600px;
+  /* max-width: 400px; */
+  margin: 16px auto;
+  background-color: var(--light-mode-background-color);
+}
+
+.newKeep__title {
+  font-size: 21px;
+  margin-bottom: 24px;
+  background: none;
+  border: none;
+  border: 1px solid red;
+  color: var(--light-mode-text-secondary-color);
+}
+
+.newKeep :nth-child(n + 3) {
+  margin-top: 8px;
+}
+
+/* .newKeep > :is(input, p) {
+  background: none;
+  border: none;
+  color: var(--text-primary-color);
+} */
+
+.newKeep__newTask {
+  background: none;
+  /*! border: none; */
+  border: 1px solid yellow;
+  color: var(--light-mode-text-primary-color);
+}
+
+.newKeep__newTask::placeholder {
+  font-size: 12px;
+}
+
+.newKeep__mappedTasks {
+  background: none;
+  border: none;
+  border: 1px solid blue;
+  color: var(--light-mode-text-primary-color);
+}
+
+.newKeep__closeButton {
+  align-self: flex-end;
+  padding: 8px 24px;
+  border-radius: 8px;
+  color: var(--light-mode-text-primary-color);
+}
+
+.newKeep__closeButton:hover {
+  cursor: pointer;
+  /*! NEED TO PICK A GOOD BUTTON HOVER BACKGROUND COLOR, THE FIRST CHOICE DOESN'T LOOK GOOD */
+  /* background-color: rgba(255, 255, 255, 0.05); */
+  background-color: tomato;
 }
 
 .newKeep > input:focus {

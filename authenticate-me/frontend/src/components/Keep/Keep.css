@@ -1,4 +1,5 @@
-.keep {
+/* Light mode (default app) */
+/* .keep {
   border: var(--border-custom);
   border-radius: 8px;
   padding: 12px;
@@ -67,9 +68,88 @@
 .keep__date {
   margin-top: 12px;
   text-align: right;
-  /* color: var(--text-secondary-color); */
-  color: yellowgreen;
+  color: var(--text-secondary-color);
   font-size: 12px;
+  border: 1px solid red;
+}
+
+.completed {
+  text-decoration: line-through;
+} */
+
+/* Dark mode is below */
+.keep {
+  border: var(--border-custom);
+  border-radius: 8px;
+  padding: 12px;
+  width: 216px;
+  min-width: 216px;
+}
+
+.keep__title {
+  color: var(--light-modetext-primary-color);
+  font-size: 18px;
+}
+
+.keep__task {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.keep__task i {
+  margin-right: 4px;
+}
+
+.keep__tasks {
+  padding: 0 12px;
+
+  color: var(--light-mode-text-primary-color);
+}
+
+:is(.keep__notCompletedTasks, .keep__completedTasks) > :nth-child(n + 2) {
+  margin-top: 8px;
+}
+
+.keep__notCompletedTasks,
+.keep__completedTasks {
+  margin-top: 12px;
+}
+
+.keep__notCompletedTasks > input {
+  background: none;
+  border: none;
+  color: var(--light-mode-text-primary-color);
+}
+
+.keep__notCompletedTasks > input:focus {
+  outline: none;
+}
+
+.keep__completedTasks {
+  padding-top: 12px;
+  border-top: var(--border-custom);
+  color: var(--light-mode-text-secondary-color);
+}
+
+.keep__completedTasks div:hover {
+  color: var(--light-mode-text-primary-color);
+}
+
+.keep__completedTasks i {
+  width: 16px;
+  text-align: center;
+}
+
+.keep__completedTasks span {
+  margin-left: 4px;
+}
+
+.keep__date {
+  margin-top: 12px;
+  text-align: right;
+  color: var(--light-mode-text-secondary-color);
+  font-size: 12px;
+  border: 1px solid red;
 }
 
 .completed {

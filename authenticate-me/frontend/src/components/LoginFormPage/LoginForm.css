@@ -1,0 +1,14 @@
+/*
+To-do
+- [] Style the login page in the middle with a rounded corner border
+- [] EXTRA: add the signup page to login as a modal
+*/
+
+.form {
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 200px;
+  min-height: 200px;
+  border-radius: 8px;
+  border: 1px solid red;
+}

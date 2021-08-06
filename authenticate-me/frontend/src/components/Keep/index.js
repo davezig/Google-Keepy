@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTaskThunk, createTaskThunk } from '../../store/keeps';
-import Card from '../Ui/Card';
+
 import './Keep.css';
 
 const Keep = (props) => {
@@ -21,7 +21,12 @@ const Keep = (props) => {
   }
 
   function updateCompleted(isComplete, taskId) {
-    dispatch(updateTaskThunk(props.id, taskId, { isComplete }));
+    dispatch(
+      updateTaskThunk(props.id, taskId, {
+        column: 'isComplete',
+        value: isComplete,
+      })
+    );
   }
 
   function createNewTask(event) {

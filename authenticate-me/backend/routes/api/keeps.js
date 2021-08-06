@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Keep } = require('../../db/models');
+const { Keep, Task } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -9,11 +9,11 @@ const router = express.Router();
 // POST localhost:5000/api/keeps
 router.post(
   '',
-  //   requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { title } = req.body;
-    // const { id: userId } = req.user;
-    const userId = 1;
+    const { id: userId } = req.user;
+
     const keep = await Keep.create({
       title,
       userId,
@@ -25,11 +25,38 @@ router.post(
 // GET localhost:5000/api/keeps
 router.get(
   '',
-  //   requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
-    // const { id: userId } = req.user;
-    const userId = 1;
-    const keeps = await Keep.findAll({ where: { userId } });
+    const { id: userId } = req.user;
+
+    const keeps = Object.assign(
+      {},
+      ...(
+        await Keep.findAll({
+          where: { userId },
+          include: [{ model: Task }],
+        })
+      ).map((keep) => {
+        return {
+          [keep.id]: {
+            title: keep.title,
+            tasks: Object.assign(
+              {},
+              ...keep.Tasks.map((task) => {
+                const { description, isComplete, position } = task;
+                return {
+                  [task.id]: {
+                    description,
+                    isComplete,
+                    position,
+                  },
+                };
+              })
+            ),
+          },
+        };
+      })
+    );
     return res.json({ count: keeps.length, keeps });
   })
 );
@@ -37,10 +64,10 @@ router.get(
 // DELETE localhost:5000/api/keeps/:id
 router.delete(
   '/:id',
-  //   requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
-    //   const {id: userId} = req.user;
-    const userId = 1;
+    const { id: userId } = req.user;
+
     const { id } = req.params;
     const keep = await Keep.destroy({ where: { id, userId } });
     return res.json(

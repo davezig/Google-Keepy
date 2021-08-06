@@ -55,7 +55,9 @@ function NewKeep() {
       )}
 
       {currTaskList.map((task) => (
-        <p className="newKeep__mappedTasks">{task.description}</p>
+        <p className="newKeep__mappedTasks" key={Math.random()}>
+          {task.description}
+        </p>
       ))}
 
       <input

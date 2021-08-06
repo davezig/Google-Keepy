@@ -28,7 +28,6 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const { id: userId } = req.user;
-
     const keeps = Object.assign(
       {},
       ...(

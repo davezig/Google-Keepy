@@ -190,7 +190,6 @@ const keepsReducer = (state = initialState, action) => {
 
     case READ_KEEPS:
       return {
-        ...state,
         ...action.keeps,
       };
 

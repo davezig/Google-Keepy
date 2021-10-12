@@ -55,7 +55,9 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
-      <button onClick={handleDemo}>Demo Login</button>
+      <button onClick={(e) => handleSubmit(e, 'demo@user.io', 'password')}>
+        Demo Login
+      </button>
     </>
   );
 }

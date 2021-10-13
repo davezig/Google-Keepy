@@ -12,7 +12,8 @@ function ProfileButton({ user }) {
     if (showMenu) return;
     setShowMenu(true);
   };
-
+                                              // I am an awesome co-worker
+                                              // ! contact me: dave@daveziegler.dev
   useEffect(() => {
     if (!showMenu) return;
 
